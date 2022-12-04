@@ -78,4 +78,37 @@ Apache Kafka Series - Learn Apache Kafka for Beginners v3 by Stephane Maarek
 - Order is guaranteed only within a partition (not across partitions)
 - Data is assigned randomly to a partition unless a key is provided (more on this later)
 
+### 8. Producers and Message Keys
+
+#### Producers
+
+- Producers write data to topics (which are made of partitions)
+- Producers know to which partition to write to (and which Kafka broker has it)
+- In case of Kafka broker failures, Producers will automatically recover
+
+#### Producers: Message keys
+
+- Producers can choose to send a key with the message (string, number, binary, etc...)
+- If key=null, data is sent round robin (partition 0, then 1, then 2...)
+- If key!=null, then all messages for that key will always go to the same partition (hashing)
+- A key is typically sent if you need message ordering for a specific field (eg: truck_id)
+
+#### Kafka Message Serializer
+
+- Kafka only accepts bytes as an input from producers and sends bytes out as an output to cunsumers
+- Message Serialization means transforming objects / data into bytes
+- They are used on the value and the key
+- Common Serializers
+  - String (incl. JSON)
+  - Int, Float
+  - Avro
+  - Protobuf
+
+#### For the curious: Kafka Message Key Hashing
+
+- A Kafka partitioner is a code logis that takes a record and determines to which partition to sent it into
+- **Key Hashing** is the process of determining the mapping of a key to a partition
+- In the default Kafka partitioner, the keys are hashed using the **murmur2 algorithm**, with the formula below for the curious:\
+  `targetPartition = Math.abs(Utils.murmur(keyBytes)) % (numPartitions - 1)`
+
 </details>
