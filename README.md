@@ -111,4 +111,25 @@ Apache Kafka Series - Learn Apache Kafka for Beginners v3 by Stephane Maarek
 - In the default Kafka partitioner, the keys are hashed using the **murmur2 algorithm**, with the formula below for the curious:\
   `targetPartition = Math.abs(Utils.murmur(keyBytes)) % (numPartitions - 1)`
 
+### 9. Consumers & Deserialization
+
+#### Consumers
+
+- Consumers read data from a topic (identified by name) - pull model
+- Consumers automatically know which broker to read from
+- In case of broker failures, consumers know how to recover
+- Data is read in order from low to high offset **with each partitions**
+
+#### Consumers Deserializer
+
+- Deserialize indicates how to transform bytes into objects / data
+- They are used on the value and the key of the message
+- Common Deserializers
+  - String (incl. JSON)
+  - Int, Float
+  - Avro
+  - Protobuf
+- The serialization / deserialization type must not change during a topic lifecycle \
+  (create a new topic instead)
+
 </details>
