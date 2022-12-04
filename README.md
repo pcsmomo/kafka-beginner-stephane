@@ -132,4 +132,12 @@ Apache Kafka Series - Learn Apache Kafka for Beginners v3 by Stephane Maarek
 - The serialization / deserialization type must not change during a topic lifecycle \
   (create a new topic instead)
 
+### 10. Consumer Groups & Consumer Offsets
+
+- All the consumers in an application read data as a consumer groups
+
+> Decided not to write all summaries for this Kafka Theory section. \
+> The images in the lecture will help you to understand a lot better than these texts \
+> Tepeat them until understood
+
 </details>
