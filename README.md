@@ -167,4 +167,18 @@ Apache Kafka Series - Learn Apache Kafka for Beginners v3 by Stephane Maarek
 4. Start Kafka using the CLI in another terminal
    `/usr/local/bin/kafka-server-start /usr/local/etc/kafka/server.properties`
 
+## Section 06: Starting Kafka without Zookeeper
+
+### 31. Mac OS X - Start Kafka in KRaft mode
+
+1. Install Java JDK version 11
+2. Download Apache Kafka from https://kafka.apache.org/downloads under 'Binary Downloads'
+3. Extract the contents on your Mac
+4. Generate a cluster ID and format the storage using kafka-storage.sh
+   - `~/kafka_2.13-3.0.0/bin/kafka-storage.sh random-uuid`
+   - `~/kafka_2.13-3.0.0/bin/kafka-storage.sh format -t <uuid> -c ~/kafka_2.13-3.0.0/config/kraft/server.properties`
+5. Start Kafka using the binaries
+   `~/kafka_2.13-3.0.0/bin/kafka-server-start.sh ~/kafka_2.13-3.0.0/config/kraft/server.properties`
+6. Setup the $PATH environment variables for easy access to the Kafka binaries
+
 </details>
