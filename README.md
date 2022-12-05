@@ -144,7 +144,7 @@ Apache Kafka Series - Learn Apache Kafka for Beginners v3 by Stephane Maarek
 
 ### 20. Mac OS X - Download and Setup Kafka in PATH
 
-[conduktor docs](https://www.conduktor.io/kafka/how-to-install-apache-kafka-on-mac)
+[conduktor docs: apach kafka on mac](https://www.conduktor.io/kafka/how-to-install-apache-kafka-on-mac)
 
 1. Install Java JDK version 11
 2. Download Apache Kafka from https://kafka.apache.org/downloads under 'Binary Downloads'
@@ -155,5 +155,16 @@ Apache Kafka Series - Learn Apache Kafka for Beginners v3 by Stephane Maarek
    `~/kafka_2.13-3.0.0/bin/kafka-server-start.sh ~/kafka_2.13-3.0.0/config/server.properties`
 6. Setup the $PATH environment variables for easy access to the Kafka binaries
    `PATH="$PATH:/Users/stephanemaarek/kafka_2.13-3.0.0/bin"`
+
+### 22. Mac OS X - Using brew
+
+[conduktor docs: apach kafka on mac with homebrew](https://www.conduktor.io/kafka/how-to-install-apache-kafka-on-mac-with-homebrew)
+
+1. Install Homebrew
+2. Run brew install kafka
+3. Start Zookeeper using the CLI
+   `/usr/local/bin/zookeeper-server-start /usr/local/etc/zookeeper/zoo.cfg`
+4. Start Kafka using the CLI in another terminal
+   `/usr/local/bin/kafka-server-start /usr/local/etc/kafka/server.properties`
 
 </details>
