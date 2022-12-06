@@ -181,4 +181,26 @@ Apache Kafka Series - Learn Apache Kafka for Beginners v3 by Stephane Maarek
    `~/kafka_2.13-3.0.0/bin/kafka-server-start.sh ~/kafka_2.13-3.0.0/config/kraft/server.properties`
 6. Setup the $PATH environment variables for easy access to the Kafka binaries
 
+## Section 07: CLI (Command Line Interface) 101
+
+### 34. CLI Introduction
+
+#### commands
+
+- command: `kafka-topics`
+  - linux, mac : `kafka-topics.sh`
+  - windows : `kafka-topics.bat`
+  - homebrew, apt... : `kafka-topics`
+- Use the `--bootstrap-server` option everywhere, not `--zookeeper`
+  - `kafka-topics --bootstrap-server localhost:9092`
+
+#### For me using [Kafka with docker-compose](https://www.conduktor.io/kafka/how-to-start-kafka-using-docker)
+
+```sh
+docker compose up
+docker exec -it kafka1 /bin/bash
+kafka-topics --version
+# 7.3.0-ccs (Commit:b8341813ae2b0444690121942f62c3a125fbf4b3)
+```
+
 </details>
