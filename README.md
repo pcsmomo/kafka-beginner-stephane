@@ -205,10 +205,12 @@ kafka-topics --version
 
 ### 36. Kafka Topics CLI
 
+`kafka-topics`
+
 #### Get in the container
 
 ```sh
-docker exec -it kafka1 /bin/bash
+docker exec -it kafka1 -- bash
 ```
 
 #### List topics
@@ -267,4 +269,49 @@ kafka-topics --bootstrap-server localhost:9092 --delete --topic third_topic
 kafka-topics --bootstrap-server localhost:9092 --list
 ```
 
+### 37. Kafka Console Producer CLI
+
+`kafka-console-producer`
+
+```sh
+kafka-topics --bootstrap-server localhost:9092 --create --topic first_topic --partitions 3
+
+# producing
+kafka-console-producer --bootstrap-server localhost:9092 --topic first_topic
+>My name is Noah from ANSTO
+>I love Kafka
+
+# producing with properties
+kafka-console-producer --bootstrap-server localhost:9092 --topic first_topic --producer-property acks=all
+>some message that is acked
+>just for fun
+>fun learning!
+
+# producing to a non existing topic (creating a new topic)
+kafka-console-producer --bootstrap-server localhost:9092 --topic new_topic
+>hello world!
+# [2022-12-06 05:38:29,593] WARN [Producer clientId=console-producer] Error while fetching metadata with correlation id 4 : {new_topic=LEADER_NOT_AVAILABLE} (org.apache.kafka.clients.NetworkClient)
+>another message
+
+kafka-topics --bootstrap-server localhost:9092 --describe --topic new_topic
+
+# produce with keys
+kafka-console-producer --bootstrap-server localhost:9092 --topic first_topic --property parse.key=true --property key.separator=:
+>example key:example value
+>name:Noah
+>user_id_1234:Noah
+>hello world!
+# org.apache.kafka.common.KafkaException: No key separator found on line number 4: 'hello world!'
+# 	at kafka.tools.ConsoleProducer$LineMessageReader.parse(ConsoleProducer.scala:374)
+# 	at kafka.tools.ConsoleProducer$LineMessageReader.readMessage(ConsoleProducer.scala:349)
+# 	at kafka.tools.ConsoleProducer$.main(ConsoleProducer.scala:50)
+# 	at kafka.tools.ConsoleProducer.main(ConsoleProducer.scala)
+```
+
 </details>
+
+```sh
+# shortcut
+docker exec -it kafka1 -- bash
+alias kt="kafka-topics --bootstrap-server localhost:9092"
+```
