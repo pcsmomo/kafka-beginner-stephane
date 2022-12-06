@@ -203,4 +203,68 @@ kafka-topics --version
 # 7.3.0-ccs (Commit:b8341813ae2b0444690121942f62c3a125fbf4b3)
 ```
 
+### 36. Kafka Topics CLI
+
+#### Get in the container
+
+```sh
+docker exec -it kafka1 /bin/bash
+```
+
+#### List topics
+
+```sh
+# List topics
+kafka-topics --bootstrap-server localhost:9092 --list
+```
+
+#### Create topics
+
+```sh
+# Create a topic
+kafka-topics --bootstrap-server localhost:9092 --create --topic first_topic
+# WARNING: Due to limitations in metric names, topics with a period ('.') or underscore ('_') could collide. To avoid issues it is best to use either, but not both.
+# Created topic first_topic.
+
+# Create second topic
+kafka-topics --bootstrap-server localhost:9092 --create --topic second_topic --partitions 3
+
+# Try
+kafka-topics --bootstrap-server localhost:9092 --create --topic third_topic --partitions 3 --replication-factor 2
+# Error while executing topic command : Replication factor: 2 larger than available brokers: 1.
+# [2022-12-06 04:47:13,059] ERROR org.apache.kafka.common.errors.InvalidReplicationFactorException: Replication factor: 2 larger than available brokers: 1.
+
+# Create third topic
+kafka-topics --bootstrap-server localhost:9092 --create --topic third_topic --partitions 3 --replication-factor 1
+```
+
+> we cannot use `first_topic` and `first.topic` together \
+> for `--replication-factor 2`, we need more brokers (kafka servers?)
+
+#### Inspect topics (--describe)
+
+```sh
+kafka-topics --bootstrap-server localhost:9092 --describe --topic first_topic
+# Topic: first_topic	TopicId: Dr4-iljBQj-QGyp60b-2nw	PartitionCount: 1	ReplicationFactor: 1	Configs:
+# 	Topic: first_topic	Partition: 0	Leader: 1	Replicas: 1	Isr: 1
+
+kafka-topics --bootstrap-server localhost:9092 --describe --topic second_topic
+# Topic: second_topic	TopicId: PmtGa4ZsTH2tMX77QZMbuw	PartitionCount: 3	ReplicationFactor: 1	Configs:
+# 	Topic: second_topic	Partition: 0	Leader: 1	Replicas: 1	Isr: 1
+# 	Topic: second_topic	Partition: 1	Leader: 1	Replicas: 1	Isr: 1
+# 	Topic: second_topic	Partition: 2	Leader: 1	Replicas: 1	Isr: 1
+
+kafka-topics --bootstrap-server localhost:9092 --describe
+```
+
+#### Delete topics
+
+```sh
+kafka-topics --bootstrap-server localhost:9092 --delete --topic first_topic
+kafka-topics --bootstrap-server localhost:9092 --delete --topic second_topic
+kafka-topics --bootstrap-server localhost:9092 --delete --topic third_topic
+
+kafka-topics --bootstrap-server localhost:9092 --list
+```
+
 </details>
