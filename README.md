@@ -308,10 +308,31 @@ kafka-console-producer --bootstrap-server localhost:9092 --topic first_topic --p
 # 	at kafka.tools.ConsoleProducer.main(ConsoleProducer.scala)
 ```
 
+### 38. Kafka Console Consumer CLI
+
+`kafka-console-consumer`
+
+```sh
+# consuming (starting from tail)
+kafka-console-consumer --bootstrap-server localhost:9092 --topic first_topic
+
+# other terminal
+kafka-console-producer --bootstrap-server localhost:9092 --topic first_topic
+>its working!
+>other test
+
+# consuming from beginning
+kafka-console-consumer --bootstrap-server localhost:9092 --topic first_topic --from-beginning
+# in order within partition, but not in order in total(?)
+
+# display key, values and timestamp in consumer
+kafka-console-consumer --bootstrap-server localhost:9092 --topic first_topic --formatter kafka.tools.DefaultMessageFormatter --property print.timestamp=true --property print.key=true --property print.value=true --from-beginning
+```
+
 </details>
 
 ```sh
 # shortcut
-docker exec -it kafka1 -- bash
+docker exec -it kafka1 bash
 alias kt="kafka-topics --bootstrap-server localhost:9092"
 ```
