@@ -329,6 +329,30 @@ kafka-console-consumer --bootstrap-server localhost:9092 --topic first_topic --f
 kafka-console-consumer --bootstrap-server localhost:9092 --topic first_topic --formatter kafka.tools.DefaultMessageFormatter --property print.timestamp=true --property print.key=true --property print.value=true --from-beginning
 ```
 
+### 39. Kafka Consumers in Group
+
+```sh
+# start one consumer
+kafka-console-consumer --bootstrap-server localhost:9092 --topic first_topic --group my-first-application
+
+# open other terminal and check it
+kafka-console-consumer --bootstrap-server localhost:9092 --topic first_topic --group my-first-application
+
+# on the other terminal
+kafka-console-producer --bootstrap-server localhost:9092 --topic first_topic
+# it doesn't do partition balancing
+
+# hmm.. I don't know what it is..
+kafka-console-producer --bootstrap-server localhost:9092 --topic first_topic --max-partition-memory-bytes 1
+
+# check on the Q&A
+# As Dimistri mentioned, this is the new Producer algorithm, sticky partition. www.confluent.io/ blog/ apache-kafka-producer-improvements-sticky-partitioner/
+# As opposed to the old "Round Robin" methodology, Kafka > 2.4 is using sticky partition.
+
+
+
+```
+
 </details>
 
 ```sh
