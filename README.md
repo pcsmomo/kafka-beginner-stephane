@@ -390,6 +390,36 @@ kafka-consumer-groups --bootstrap-server localhost:9092 --list
 # console-consumer-25162 is a temporary consumer
 ```
 
+### 41. Resetting Offsets
+
+```sh
+# describe the consumer group
+kafka-consumer-groups --bootstrap-server localhost:9092 --describe --group my-first-application
+
+# change the offset to the beginning
+kafka-consumer-groups --bootstrap-server localhost:9092 --group my-first-application --reset-offsets --to-earliest --execute --all-topics
+
+# describe the consumer group
+kafka-consumer-groups --bootstrap-server localhost:9092 --describe --group my-first-application
+
+# consume all
+kafka-console-consumer --bootstrap-server localhost:9092 --topic first_topic --group my-first-application --from-beginning
+
+# describe the consumer group
+kafka-consumer-groups --bootstrap-server localhost:9092 --describe --group my-first-application
+```
+
+```sh
+# change offset -4
+kafka-consumer-groups --bootstrap-server localhost:9092 --group my-first-application --reset-offsets --shift-by -4 --execute --all-topics
+
+# consume them
+kafka-console-consumer --bootstrap-server localhost:9092 --topic first_topic --group my-first-application
+
+# change offset +2
+kafka-consumer-groups --bootstrap-server localhost:9092 --group my-first-application --reset-offsets --shift-by -2 --execute --all-topics
+```
+
 </details>
 
 ```sh
