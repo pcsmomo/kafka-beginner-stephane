@@ -348,9 +348,46 @@ kafka-console-producer --bootstrap-server localhost:9092 --topic first_topic --m
 # check on the Q&A
 # As Dimistri mentioned, this is the new Producer algorithm, sticky partition. www.confluent.io/ blog/ apache-kafka-producer-improvements-sticky-partitioner/
 # As opposed to the old "Round Robin" methodology, Kafka > 2.4 is using sticky partition.
+```
 
+### 40. Kafka Consumer Groups CLI
 
+```sh
+kafka-consumer-groups --bootstrap-server localhost:9092 --list
+# my-first-application
+# my-second-application
 
+kafka-consumer-groups --bootstrap-server localhost:9092 --describe --group my-first-application
+# GROUP                TOPIC           PARTITION  CURRENT-OFFSET  LOG-END-OFFSET  LAG             CONSUMER-ID     HOST            CLIENT-ID
+# my-first-application first_topic     0          12              12              0               -               -               -
+# my-first-application first_topic     1          37              37              0               -               -               -
+# my-first-application first_topic     2          22              22              0               -               -               -
+
+kafka-consumer-groups --bootstrap-server localhost:9092 --describe --group my-second-application
+# GROUP                 TOPIC           PARTITION  CURRENT-OFFSET  LOG-END-OFFSET  LAG             CONSUMER-ID     HOST            CLIENT-ID
+# my-second-application first_topic     0          0               12              12              -               -               -
+# my-second-application first_topic     1          24              37              13              -               -               -
+# my-second-application first_topic     2          6               22              16              -               -               -
+```
+
+```sh
+# run consumer and check the description again (maybe two or three consumers)
+kafka-console-consumer --bootstrap-server localhost:9092 --topic first_topic --group my-first-application
+kafka-console-consumer --bootstrap-server localhost:9092 --topic first_topic --group my-first-application
+kafka-console-consumer --bootstrap-server localhost:9092 --topic first_topic --group my-first-application
+
+# Now it has CONSUMER-ID
+kafka-consumer-groups --bootstrap-server localhost:9092 --describe --group my-first-application
+```
+
+```sh
+kafka-console-consumer --bootstrap-server localhost:9092 --topic first_topic --from-beginning
+kafka-consumer-groups --bootstrap-server localhost:9092 --list
+# console-consumer-25162
+# my-first-application
+# my-second-application
+
+# console-consumer-25162 is a temporary consumer
 ```
 
 </details>
