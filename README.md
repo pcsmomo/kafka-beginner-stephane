@@ -471,6 +471,14 @@ In this course, we will use Gradle (easier to write, less errors)
   - GroupId: io.conduktor.demos
   - ArtifactId: kafka-beginners-course
 
+#### Create a module again under the kafka-beginners-course
+
+`kafka-basics/build.gradle`
+
+- [Kafka Maven](https://mvnrepository.com/artifact/org.apache.kafka)
+- https://mvnrepository.com/artifact/org.apache.kafka/kafka-clients/3.3.1
+  - Gradle (Short)
+
 </details>
 
 ```sh
