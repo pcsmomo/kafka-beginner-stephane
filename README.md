@@ -4,7 +4,7 @@ Apache Kafka Series - Learn Apache Kafka for Beginners v3 by Stephane Maarek
 
 ## Folder structure
 
--
+- 09-kafka-basics: `kafka-beginners-course/kafka-basics`
 
 ## Details
 
