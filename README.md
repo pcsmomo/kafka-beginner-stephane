@@ -420,6 +420,57 @@ kafka-console-consumer --bootstrap-server localhost:9092 --topic first_topic --g
 kafka-consumer-groups --bootstrap-server localhost:9092 --group my-first-application --reset-offsets --shift-by -2 --execute --all-topics
 ```
 
+## Section 09: Kafka Java Programming 101
+
+### 44. Creating Kafka Project
+
+#### IntelliJ
+
+[install IntelliJ CE (Community Edition)](https://www.jetbrains.com/idea/download/#section=mac)
+
+#### Install JDK (openjdk)
+
+```sh
+brew install openjdk
+# => Installing openjdk
+# ==> Pouring openjdk--19.0.1.arm64_ventura.bottle.1.tar.gz
+
+# paths
+sudo ln -sfn /opt/homebrew/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
+echo 'export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"' >> ~/.zshrc
+export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
+
+# Uninstall as IntelliJ gradle doesn't support jdk 1.9
+# Your build is currently configured to use Java 19.0.1 and Gradle 7.5.1.
+brew list
+brew uninstall openjdk
+brew autoremove
+```
+
+```sh
+brew info openjdk@17
+brew install openjdk@17
+# paths again
+sudo ln -sfn /opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-17.jdk
+echo 'export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"' >> ~/.zshrc
+export CPPFLAGS="-I/opt/homebrew/opt/openjdk@17/include"
+```
+
+#### Maven vs Gradle?
+
+In this course, we will use Gradle (easier to write, less errors)
+
+#### Create a new Java project in IntelliJ IDEA
+
+- Name: kafka-beginners-course
+- Language - Java
+- Build system: Gradle
+- JDK: openjdk@17
+- Gradle DSL: Groovy
+- Advanced Settings
+  - GroupId: io.conduktor.demos
+  - ArtifactId: kafka-beginners-course
+
 </details>
 
 ```sh
