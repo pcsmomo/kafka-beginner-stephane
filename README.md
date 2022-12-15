@@ -479,6 +479,15 @@ In this course, we will use Gradle (easier to write, less errors)
 - https://mvnrepository.com/artifact/org.apache.kafka/kafka-clients/3.3.1
   - Gradle (Short)
 
+#### after copy dependencies
+
+Gradle tab -> Reload All Gradle Project \
+Then, you will see `kafka-clients` in the `External Libraries` on the left
+
+#### IntelliJ Setting
+
+Settings -> Build, Execution, Deployment -> Build Tools -> Gradle -> Build and run using: IntelliJ IDEA
+
 </details>
 
 ```sh
