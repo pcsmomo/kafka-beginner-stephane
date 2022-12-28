@@ -495,6 +495,7 @@ Settings -> Build, Execution, Deployment -> Build Tools -> Gradle -> Build and r
 #### IntelliJ short-cuts
 
 - Alt + Enter: hint
+- Comm + P: see argument option
 - Ctrl + R: Run
 
 ### 45. Java Producer
@@ -505,6 +506,11 @@ kafka-console-consumer --bootstrap-server 127.0.0.1:9092 --topic demo_java
 ```
 
 Run the java code, ProducerDemo
+
+### 46. Java Producer Callbacks
+
+- Confirm the partition and offset the message was sent to using Callbacks
+- We'll look at the interesting behavior of `StickyPartitioner` for batch
 
 </details>
 

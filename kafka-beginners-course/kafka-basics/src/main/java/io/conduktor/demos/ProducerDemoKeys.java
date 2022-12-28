@@ -7,9 +7,9 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Properties;
 
-public class ProducerDemoWithCallback {
+public class ProducerDemoKeys {
 
-    private static final Logger log = LoggerFactory.getLogger(ProducerDemoWithCallback.class.getSimpleName());
+    private static final Logger log = LoggerFactory.getLogger(ProducerDemoKeys.class.getSimpleName());
 
     public static void main(String[] args) {
         log.info("I am a Kafka Producer");
