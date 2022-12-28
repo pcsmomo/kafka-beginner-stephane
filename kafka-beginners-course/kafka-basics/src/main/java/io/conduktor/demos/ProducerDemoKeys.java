@@ -24,8 +24,13 @@ public class ProducerDemoKeys {
         KafkaProducer<String, String> producer = new KafkaProducer<>(properties);
 
         for(int i=0; i<10; i++) {
+
+            String topic = "demo_java";
+            String value = "hello world " + i;
+            String key = "id_" + i;
+
             // create a producer record
-            ProducerRecord<String, String> producerRecord = new ProducerRecord<>("demo_java", "hello world" + i);
+            ProducerRecord<String, String> producerRecord = new ProducerRecord<>(topic, key, value);
 
             // send the data - asynchronous
             producer.send(producerRecord, new Callback() {
@@ -36,6 +41,7 @@ public class ProducerDemoKeys {
                         // the record was successfully sent
                         log.info("Received new metadata. \n" +
                                 "Topic: " + metadata.topic() + "\n" +
+                                "Key: " + producerRecord.key() + "\n" +
                                 "Partition: " + metadata.partition() + "\n" +
                                 "Offset: " + metadata.offset() + "\n" +
                                 "Timestamp: " + metadata.timestamp());
@@ -44,12 +50,6 @@ public class ProducerDemoKeys {
                     }
                 }
             });
-
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
         }
 
         // flush data - synchronous

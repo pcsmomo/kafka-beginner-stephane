@@ -512,6 +512,10 @@ Run the java code, ProducerDemo
 - Confirm the partition and offset the message was sent to using Callbacks
 - We'll look at the interesting behavior of `StickyPartitioner` for batch
 
+### 47. Java Producer with Keys
+
+> Same key goes to the same partition
+
 </details>
 
 ```sh
