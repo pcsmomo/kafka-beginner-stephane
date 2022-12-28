@@ -422,6 +422,10 @@ kafka-consumer-groups --bootstrap-server localhost:9092 --group my-first-applica
 
 ## Section 09: Kafka Java Programming 101
 
+### 43. Kafka SDK List
+
+[Kafka Client Libraries SDK List](https://www.conduktor.io/kafka/kafka-sdk-list)
+
 ### 44. Creating Kafka Project
 
 #### IntelliJ
@@ -487,6 +491,20 @@ Then, you will see `kafka-clients` in the `External Libraries` on the left
 #### IntelliJ Setting
 
 Settings -> Build, Execution, Deployment -> Build Tools -> Gradle -> Build and run using: IntelliJ IDEA
+
+#### IntelliJ short-cuts
+
+- Alt + Enter: hint
+- Ctrl + R: Run
+
+### 45. Java Producer
+
+```sh
+kafka-topics --bootstrap-server 127.0.0.1:9092 --create --topic demo_java --partitions 3 --replication-factor 1
+kafka-console-consumer --bootstrap-server 127.0.0.1:9092 --topic demo_java
+```
+
+Run the java code, ProducerDemo
 
 </details>
 
